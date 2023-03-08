@@ -1,4 +1,13 @@
 :root {
-    /* Colors */
-    --color-pink: rgb(255,240,240);
-  }
+  /* Colors */
+  // primary
+  --color-black-primary: rgba(20, 20, 16, 0.89);
+  --color-pink-primary: rgb(245, 242, 242);
+  //  pink
+  --color-pink: rgb(255, 240, 240);
+  --color-pink-light: rgb(249, 196, 210);
+  --color-pink-dirty: rgb(177, 133, 151);
+  // beige
+  --color-beige: rgb(252, 229, 228);
+  --color-beige-dark: rgb(255, 233, 233);
+}

@@ -26,3 +26,9 @@ body {
 .main {
     flex: 1 1 auto;
 }
+
+.no-scroll{
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+  }

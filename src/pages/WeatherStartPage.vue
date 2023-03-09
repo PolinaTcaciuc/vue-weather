@@ -16,22 +16,35 @@
       <div class="row">
         <div class="col-12">
           <v-button
+            @click="updateShowModal"
             class="weather-start__btn-auth mb-5"
             backgroundColor="pink"
             :hasCurve="true"
             animate="animate"
-            fontWeight="500">
+            fontWeight="500"
+          >
             Авторизация
           </v-button>
+
         </div>
       </div>
+      <Teleport to="body">
+        <Transition name="modal">
+          <v-modal :isShow="showModal" @closeModal="updateShowModal">
+          </v-modal>
+        </Transition>
+      </Teleport>
     </div>
   </section>
 </template>
+<script setup>
+import { useToggle } from "@/use/useToggle ";
+let { state: showModal, toggling: updateShowModal } = useToggle(false);
+</script>
 
 <style lang="scss">
 .weather-start {
-  min-height:100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

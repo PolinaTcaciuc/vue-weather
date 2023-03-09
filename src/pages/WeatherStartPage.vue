@@ -25,12 +25,19 @@
           >
             Авторизация
           </v-button>
-
         </div>
       </div>
       <Teleport to="body">
         <Transition name="modal">
           <v-modal :isShow="showModal" @closeModal="updateShowModal">
+            <register-form
+            @notRegister="updateRegister"
+            v-if="isRegister"
+            />
+            <login-form
+            @notEnter="updateRegister"
+            v-if="!isRegister"
+            />
           </v-modal>
         </Transition>
       </Teleport>
@@ -38,8 +45,13 @@
   </section>
 </template>
 <script setup>
+import RegisterForm from "@/components/RegisterForm.vue";
+import LoginForm from "@/components/LoginForm.vue";
+
 import { useToggle } from "@/use/useToggle ";
 let { state: showModal, toggling: updateShowModal } = useToggle(false);
+let { state: isRegister, toggling: updateRegister } = useToggle(true);
+
 </script>
 
 <style lang="scss">

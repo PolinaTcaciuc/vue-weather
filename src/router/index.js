@@ -4,9 +4,12 @@ const routes = [
 
   {
     path: '/',
-    name: 'about',
     component: () => import('@/pages/WeatherStartPage.vue')
-  }
+  },
+  {
+    path: '/weather',
+    component: () => import('@/pages/WeatherFetchPage.vue')
+  },
 ]
 
 const router = createRouter({

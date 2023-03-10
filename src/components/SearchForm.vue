@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="searchCity" method="#" action="#" class="form-search pt-3">
+  <form @submit.prevent="requestCity" method="#" action="#" class="form-search pt-3">
     <v-input
       v-model.trim="city"
       type="search"
@@ -17,12 +17,26 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps,computed } from "vue";
+import { useStore } from "vuex";
 const props = defineProps({
   classes: {
     type: Object,
+    default: () => ({})
   },
 });
+const store = useStore();
+let city = computed({
+  get() {
+    return store.state.city.searchCity;
+  },
+  set(value) {
+    store.commit("city/SET_CITY", value);
+  },
+});
+const requestCity = () => store.dispatch("city/fetchCityWeatherData");
+
+
 </script>
 
 <style lang="scss">

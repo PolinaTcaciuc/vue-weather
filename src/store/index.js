@@ -1,14 +1,12 @@
-import { createStore } from 'vuex'
+import {
+  createStore
+} from 'vuex'
+ import {cityModule} from './modules/cityModule.js'
+ import {commonModule} from './modules/common.js'
 
-export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
+ export default createStore({
+  modules:{
+    city:cityModule,
+    common: commonModule,
   }
 })

@@ -1,7 +1,8 @@
 <script setup>
+import SearchForm from "@/components/SearchForm.vue";
+import CityList from "@/components/CityList.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
-import SearchForm from "@/components/SearchForm.vue";
 const store = useStore();
 const loadingStatus = computed(() => store.getters["common/loading"]);
 
@@ -23,6 +24,9 @@ const errorClasses = ["col-11", "col-md-8", "col-lg-7"];
       </div>
     </div>
     <v-error :classes="errorClasses"></v-error>
+    <div class="container">
+      <city-list></city-list>
+    </div>
   </section>
 </template>
 

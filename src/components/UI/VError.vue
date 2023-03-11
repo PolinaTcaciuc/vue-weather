@@ -64,6 +64,7 @@ watch(errorStatus,() =>{
 <style lang="scss" scoped>
 .error-card__wrapper {
   position: absolute;
+  z-index: 200;
   top: 0;
   right: 0;
   left: 0;

@@ -10,10 +10,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faXmark} from '@fortawesome/free-solid-svg-icons'
+import { faXmark,faWind,faUmbrella,faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 
-library.add(faXmark)
-
+library.add(faXmark,faWind,faUmbrella,faMagnifyingGlass)
 
 /* -------- global components List --------  */
 import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to use it manually.

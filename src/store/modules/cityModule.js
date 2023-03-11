@@ -16,7 +16,15 @@ export const cityModule = {
             state.weatherData.push(city);
         },
     },
-       actions: {
+    getters:{
+        getWeatherData(state){
+            return state.weatherData
+        },
+        getSearchCity(state){
+            return state.searchCity
+        }
+    },
+    actions: {
         async fetchCityWeatherData({ state: { searchCity },commit }) {
             commit('common/CLEAR_ERROR','',{root: true})
             commit('common/SET_LOADING', true, {root: true})
@@ -26,6 +34,8 @@ export const cityModule = {
                     let city = new City(res.data);
                     commit('PUSH_WEATHER_DATA', city);
                     commit('common/SET_LOADING', false, {root: true});
+                    commit('SET_CITY', '')
+
                 })
                 .catch(er => {
                     commit('common/SET_LOADING', false, {root: true})
@@ -38,7 +48,4 @@ export const cityModule = {
                 })
         },
     }
-
-
-
 }

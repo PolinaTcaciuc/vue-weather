@@ -3,9 +3,12 @@ import City from '@/classes/City.js';
 export const cityModule = {
     namespaced: true,
     state() {
+        const storedData = localStorage.getItem('weatherData');
+
         return {
             searchCity: '',
-            weatherData: [],
+            weatherData: storedData ? JSON.parse(storedData) : [],
+            selectedSort: '',
         }
     },
     mutations: {
@@ -14,7 +17,12 @@ export const cityModule = {
         },
         PUSH_WEATHER_DATA(state, city) {
             state.weatherData.push(city);
+            localStorage.setItem('weatherData', JSON.stringify(state.weatherData));
+
         },
+        SET_SELECTED_SORT(state,value){
+            state.selectedSort = value;
+        }
     },
     getters:{
         getWeatherData(state){
@@ -22,6 +30,9 @@ export const cityModule = {
         },
         getSearchCity(state){
             return state.searchCity
+        },
+        getSelectedSort(state){
+            return state.selectedSort
         }
     },
     actions: {

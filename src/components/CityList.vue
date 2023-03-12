@@ -1,13 +1,22 @@
 <script setup>
 import CityCard from "./CityCard.vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
-const store = useStore();
-const listOfCities = computed(() => store.getters["city/getWeatherData"]);
+import { defineProps,computed } from "vue";
+const props = defineProps({
+  weatherData:{
+    type:Array,
+    required:true,
+  }
+})
+ const store = useStore();
+// const listOfCities = computed(() => store.getters["city/getWeatherData"]);
 const currentSearch = computed(() => store.getters["city/getSearchCity"]);
 
 const filteredCities = computed(() => {
-  return listOfCities.value.filter((city) => {
+  if(currentSearch.value === ''){
+    return props.weatherData;
+  }
+  return props.weatherData.filter((city) => {
     return city.cityName
       .toLowerCase()
       .includes(currentSearch.value.toLowerCase());
@@ -15,18 +24,12 @@ const filteredCities = computed(() => {
 });
 </script>
 <template>
-  <p
-    class="alt-txt"
-    v-show="filteredCities.length <= 0 && listOfCities.length > 0"
-  >
-    {{ `&#xab;${currentSearch}&#xbb;` }} нет в вашем списке...
-  </p>
   <div class="container">
+    <p class="alt-txt" v-if="filteredCities.length <= 0">{{currentSearch}} отсутствует в вашем списке...</p>
     <TransitionGroup
       name="animCity"
       tag="ul"
-      class="city-list row justify-content-center pt-5"
-    >
+      class="city-list row justify-content-center pt-5">
       <city-card v-for="city in filteredCities" :key="city.id" :city="city">
       </city-card>
     </TransitionGroup>
@@ -36,6 +39,9 @@ const filteredCities = computed(() => {
 
 
 <style lang="scss">
+.alt-txt {
+  color: var(--color-attention) !important;
+}
 .animCity-move,
 .animCity-enter-active,
 .animCity-leave-active {

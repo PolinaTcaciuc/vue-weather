@@ -5,6 +5,7 @@
  import VLink from './VLink';
  import VLoader from './VLoader';
  import VError from './VError';
+ import VSelect from './VSelect';
  export default [
      VTitle,
      VButton,
@@ -13,4 +14,5 @@
      VLink,
      VLoader,
      VError,
+     VSelect,
  ]
